@@ -1,6 +1,7 @@
 package pt.theloop.inditexchallenge.service;
 
 import org.springframework.stereotype.Service;
+import pt.theloop.inditexchallenge.exception.ProductNotFoundException;
 import pt.theloop.inditexchallenge.model.Product;
 import pt.theloop.inditexchallenge.repository.ProductRepository;
 
@@ -17,7 +18,7 @@ public class ProductService implements IProductService {
     public Product getProduct(Long id) {
         return productRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Product with given id does not exist"));
+                .orElseThrow(ProductNotFoundException::new);
     }
 
 }

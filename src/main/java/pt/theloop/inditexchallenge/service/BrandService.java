@@ -1,6 +1,7 @@
 package pt.theloop.inditexchallenge.service;
 
 import org.springframework.stereotype.Service;
+import pt.theloop.inditexchallenge.exception.BrandNotFoundException;
 import pt.theloop.inditexchallenge.model.Brand;
 import pt.theloop.inditexchallenge.repository.BrandRepository;
 
@@ -17,7 +18,7 @@ public class BrandService implements IBrandService {
     public Brand getBrand(Long id) {
         return brandRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Brand with given id does not exist"));
+                .orElseThrow(BrandNotFoundException::new);
     }
 
 }
